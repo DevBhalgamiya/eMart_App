@@ -67,3 +67,6 @@ const wishlist = "My Wishlist",
     message = "Messages",
     oldpass = "Old Password",
     newpass = "New Password";
+
+// payment method string
+const paypal = "Paypal", stripe = "Stripe", cod = "Cash on delivery";
