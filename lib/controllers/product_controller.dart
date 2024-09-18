@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:emart/consts/consts.dart';
 import 'package:emart/models/category_model.dart';
 import 'package:flutter/services.dart';
@@ -9,6 +10,8 @@ class ProductController extends GetxController {
   var totalPrice = 0.obs;
 
   var subcat = [];
+
+  var isFav = false.obs;
 
   getSubCategories(title) async {
     subcat.clear();
@@ -60,5 +63,25 @@ class ProductController extends GetxController {
     totalPrice.value = 0;
     quantity.value = 0;
     colorIndex.value = 0;
+  }
+
+  addToWishlist(docId) async {
+    await firestore.collection(productsCollection).doc(docId).set({
+      'p_wishlist': FieldValue.arrayUnion([currentUser!.uid])
+    }, SetOptions(merge: true));
+  }
+
+  removeFromWishlist(docId) async {
+    await firestore.collection(productsCollection).doc(docId).set({
+      'p_wishlist': FieldValue.arrayRemove([currentUser!.uid])
+    }, SetOptions(merge: true));
+  }
+
+  checkifFav(data) async {
+    if (data['p_wishlist'].contains(currentUser!.uid)) {
+      isFav(true);
+    } else {
+      isFav(false);
+    }
   }
 }
