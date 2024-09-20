@@ -3,8 +3,8 @@ import 'package:emart/consts/consts.dart';
 import 'package:emart/services/firestore_services.dart';
 import 'package:emart/widgets_common/loading_indicator.dart';
 
-class MessagesScreen extends StatelessWidget {
-  const MessagesScreen({super.key});
+class WishlistScreen extends StatelessWidget {
+  const WishlistScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -12,10 +12,10 @@ class MessagesScreen extends StatelessWidget {
       backgroundColor: whiteColor,
       appBar: AppBar(
         title:
-            "My Messages".text.fontFamily(semibold).color(darkFontGrey).make(),
+            "My Wishlist".text.fontFamily(semibold).color(darkFontGrey).make(),
       ),
       body: StreamBuilder(
-          stream: FirestoreServices.getAllMessages(),
+          stream: FirestoreServices.getWishlists(),
           builder:
               (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
             if (!snapshot.hasData) {
@@ -23,7 +23,7 @@ class MessagesScreen extends StatelessWidget {
                 child: loadingIndicator(),
               );
             } else if (snapshot.data!.docs.isEmpty) {
-              return "No messages yet!".text.color(darkFontGrey).makeCentered();
+              return "No wishlist yet!".text.color(darkFontGrey).makeCentered();
             } else {
               return Container();
             }
