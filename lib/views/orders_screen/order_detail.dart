@@ -1,6 +1,7 @@
 import 'package:emart/consts/consts.dart';
 import 'package:emart/views/orders_screen/components/order_place_details.dart';
 import 'package:emart/views/orders_screen/components/order_status.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:intl/intl.dart' as intl;
 
@@ -75,18 +76,23 @@ class OrderDetails extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            "Shipping Address".text.fontFamily(semibold).make(),
-                            "${data['ordered_by_name']}".text.make(),
-                            "${data['ordered_by_email']}".text.make(),
-                            "${data['ordered_by_address']}".text.make(),
-                            "${data['ordered_by_city']}".text.make(),
-                            "${data['ordered_by_state']}".text.make(),
-                            "${data['ordered_by_phone']}".text.make(),
-                            "${data['ordered_by_postalcode']}".text.make(),
-                          ],
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              "Shipping Address"
+                                  .text
+                                  .fontFamily(semibold)
+                                  .make(),
+                              "${data['ordered_by_name']}".text.make(),
+                              "${data['ordered_by_email']}".text.make(),
+                              "${data['ordered_by_address']}".text.make(),
+                              "${data['ordered_by_city']}".text.make(),
+                              "${data['ordered_by_state']}".text.make(),
+                              "${data['ordered_by_phone']}".text.make(),
+                              "${data['ordered_by_postalcode']}".text.make(),
+                            ],
+                          ),
                         ),
                         SizedBox(
                           width: 130,
@@ -98,6 +104,7 @@ class OrderDetails extends StatelessWidget {
                               "${data['total_amount']}"
                                   .text
                                   .fontFamily(bold)
+                                  .overflow(TextOverflow.ellipsis)
                                   .color(redColor)
                                   .make(),
                             ],

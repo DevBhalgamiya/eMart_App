@@ -1,4 +1,6 @@
 import 'package:emart/consts/consts.dart';
+import 'package:emart/views/category_screen/category_detail.dart';
+import 'package:get/get.dart';
 
 Widget featuredButton({String? title, icon}) {
   return Row(
@@ -15,5 +17,8 @@ Widget featuredButton({String? title, icon}) {
       .padding(const EdgeInsets.all(4))
       .roundedSM
       .outerShadowSm
-      .make();
+      .make()
+      .onTap(() {
+    Get.to(() => CategoryDetails(title: title));
+  });
 }

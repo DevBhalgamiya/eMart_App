@@ -4,8 +4,6 @@ import 'package:emart/controllers/product_controller.dart';
 import 'package:emart/views/chat_screen/chat_screen.dart';
 import 'package:emart/widgets_common/our_button.dart';
 import 'package:get/get.dart';
-import 'package:get/get_state_manager/get_state_manager.dart';
-import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 
 class ItemDetails extends StatelessWidget {
   final String? title;
@@ -14,7 +12,8 @@ class ItemDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var controller = Get.find<ProductController>();
+    var controller = Get.put(ProductController());
+    // var controller = Get.find<ProductController>();
 
     return WillPopScope(
       onWillPop: () async {
